@@ -26,3 +26,7 @@ D:\My Projects\ToDo\ToDoApplication\obj\Debug\ToDoApplication.dll
 D:\My Projects\ToDo\ToDoApplication\obj\Debug\ToDoApplication.pdb
 D:\My Projects\ToDo\ToDoApplication\obj\Debug\ToDoApplication.csprojResolveAssemblyReference.cache
 D:\My Projects\ToDo\ToDoApplication\bin\System.Web.Optimization.dll
+D:\My Projects\Todo\ToDoApplication\bin\Antlr3.Runtime.dll
+D:\My Projects\Todo\ToDoApplication\bin\WebGrease.dll
+D:\My Projects\Todo\ToDoApplication\bin\Antlr3.Runtime.pdb
+D:\My Projects\Todo\ToDoApplication\bin\System.Web.Optimization.xml
