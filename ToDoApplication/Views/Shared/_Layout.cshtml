@@ -1,0 +1,27 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+
+   
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script src="~/Scripts/Angular/angular-min.js"></script>
+    <script src="~/Scripts/Angular/angular-route.min.js"></script>
+    <script src="~/Scripts/Bootstrap/bootstrap.min.js"></script>
+
+    <link href="~/CSS/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/CSS/bootstrap-theme.min.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - ToDo App</p>
+        </footer>
+    </div>
+</body>
+</html>

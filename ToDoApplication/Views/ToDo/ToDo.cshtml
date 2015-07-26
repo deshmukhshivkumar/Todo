@@ -1,0 +1,83 @@
+﻿@model ToDoApplication.Models.ToDoViewModel
+
+@{
+    ViewBag.Title = "ToDo App";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    function GetToDoList() {
+        $("#toDoList").load("/todo/list");
+    }
+
+    $(document).ready(function () {
+
+        //$("#btnSave").click(function () {
+        //    $.post("todo/save",function() {
+        //        GetToDoList();
+        //    });
+        //});
+    });
+
+</script>
+
+<h2>Create To Do</h2>
+<form action="/todo/save">
+    <div class="container form-group">
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-4" >
+            Title
+        </div>
+        <div class="col-md-4">
+            <input type="text" id="txtTitle" name="Title" class="form-control"/>
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-4">
+            Description
+        </div>
+        <div class="col-md-4">
+            <input type="text" id="txtDesc" name="Description" class="form-control"/>
+            @Html.ValidationMessageFor(model => model.Description)
+
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-4">
+            Email
+        </div>
+        <div class="col-md-4">
+            <input type="text" id="txtEmail" name="Email" class="form-control"/>
+            @Html.ValidationMessageFor(model => model.Email)
+
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-4">
+            Priority
+        </div>
+        <div class="col-md-4">
+           <input type="text" name="Priority" id="txtPriority" class="form-control  "/>
+            @Html.ValidationMessageFor(model => model.Priority)
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-4 col-md-offset-4">
+            <input type="submit" class="btn btn-primary" id="btnSave" name="btnSave" value="Save" />
+            <input type="button" class="btn btn-default" id="btnCacel" name="btnCancel" value="Cancel" />
+        </div>
+    </div>
+</div>
+</form>
+<div id="toDoList">
+    @{
+        Html.RenderAction("List", "ToDo");
+    }
+</div>

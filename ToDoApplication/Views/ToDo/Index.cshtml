@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ToDoApplication.Models.ToDoViewModel>
+
+
+<table class="table-bordered table table-responsive">
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Email</th>
+        <th>Priority</th>
+        <th>Created On</th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+         {
+             <tr>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.Title)
+                 </td>
+                 <td>
+                     @item.Description
+                 </td>
+                 <td>
+                     @item.Email
+                 </td>
+                 <td>
+                     @item.Priority
+                 </td>
+                 <td>
+                     @item.CreatedOn
+                 </td>
+             </tr>
+         }
+    }
+</table>
