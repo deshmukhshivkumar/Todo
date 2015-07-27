@@ -8,16 +8,22 @@ namespace MvcAppVs2013
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
-          
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/Jquery/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/Jquery/jquery.unobtrusive*",
-                        "~/Scripts/Jquery/jquery.validate*"));
+                "~/Scripts/jquery.validate*",
+                "~/Scripts/jquery.validate.unobtrusive*"
+                        ));
 
-         
+            bundles.Add(new ScriptBundle("~/bundles/Bootstarp").Include(
+                "~/Scripts/bootstrap.js"
+                ));
 
+            bundles.Add(new StyleBundle("~/CssBundle/Bootstrap").Include(
+                    "~/Content/bootstrap*"                
+                ));
         }
     }
 }

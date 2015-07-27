@@ -7,7 +7,7 @@ namespace ToDoApplication.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Title is Required")]
         [MaxLength(100)]
         public string Title { get; set; }
 

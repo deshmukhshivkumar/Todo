@@ -40,6 +40,7 @@ namespace ToDoApplication.Provider
         public bool Add(ToDoViewModel toDoViewModel)
         {
             toDoViewModel.Id = InSessionToDoList.Count +1;
+            toDoViewModel.CreatedOn = DateTime.Now;
             InSessionToDoList.Add(toDoViewModel);
             return true;
         }
