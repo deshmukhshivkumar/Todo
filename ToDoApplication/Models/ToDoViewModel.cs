@@ -5,6 +5,10 @@ namespace ToDoApplication.Models
 {
     public class ToDoViewModel
     {
+        public ToDoViewModel()
+        {
+            Id = 0;
+        }
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Title is Required")]
@@ -13,9 +17,10 @@ namespace ToDoApplication.Models
 
         [MaxLength(1000)]
         public string Description { get; set; }
-
+        
         [Range(1,5)]
-        public int Priority { get; set; }
+        [Required]
+        public int? Priority { get; set; }
 
         [EmailAddress]
         public string Email { get; set; }

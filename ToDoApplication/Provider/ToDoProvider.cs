@@ -8,21 +8,7 @@ namespace ToDoApplication.Provider
 {
     public class ToDoProvider
     {
-        public ToDoProvider()
-        {
-            if (InSessionToDoList.Count == 0)
-            {
-                InSessionToDoList.Add(new ToDoViewModel()
-                {
-                    Title = "Test Note",
-                    CreatedOn = new DateTime(2015,07,20),
-                    Description = "This is test note",
-                    Email = "sdeshmukh@tavisca.com",
-                    Id = 1,
-                    Priority = 1
-                });
-            }
-        }
+       
 
         public List<ToDoViewModel> InSessionToDoList
         {
@@ -31,6 +17,19 @@ namespace ToDoApplication.Provider
                 if (HttpContext.Current.Session["ToDoList"] == null)
                 {
                     HttpContext.Current.Session["ToDoList"] = new List<ToDoViewModel>();
+
+                    if (InSessionToDoList.Count == 0)
+                    {
+                        InSessionToDoList.Add(new ToDoViewModel()
+                        {
+                            Title = "Test Note",
+                            CreatedOn = new DateTime(2015, 07, 20),
+                            Description = "This is test note",
+                            Email = "sdeshmukh@tavisca.com",
+                            Id = 1,
+                            Priority = 1
+                        });
+                    }
                 }
                 return (List<ToDoViewModel>) HttpContext.Current.Session["ToDoList"];
             }
@@ -45,15 +44,35 @@ namespace ToDoApplication.Provider
             return true;
         }
 
-        public bool Remove(ToDoViewModel toDoViewModel)
+        public bool Update(ToDoViewModel toDoViewModel)
         {
-            var itemToRemove = InSessionToDoList.FirstOrDefault(td => td.Id == toDoViewModel.Id);
+            var existingItem = InSessionToDoList.Find(istodo => istodo.Id == toDoViewModel.Id);
+
+            if (existingItem != null)
+            {
+                existingItem.Title = toDoViewModel.Title;
+                existingItem.Description = toDoViewModel.Description;
+                existingItem.Email = toDoViewModel.Email;
+                existingItem.Priority = toDoViewModel.Priority;
+                return true;
+            }
+            return false;
+        }
+
+        public bool Remove(int id)
+        {
+            var itemToRemove = InSessionToDoList.FirstOrDefault(td => td.Id == id);
 
             if (itemToRemove == null)
                 return false;
 
             InSessionToDoList.Remove(itemToRemove);
             return true;
+        }
+
+        public ToDoViewModel Get(int id)
+        {
+            return InSessionToDoList.Find(todo => todo.Id == id);
         }
 
         public List<ToDoViewModel> GetAll()

@@ -7,15 +7,18 @@ namespace ToDoApplication.Controllers
     public class ToDoController : Controller
     {
         ToDoProvider _toDoProvider = new ToDoProvider();
+
         public ActionResult ToDo()
         {
-            return View();
+            return View(new ToDoViewModel());
         }
-       
+               
         public ActionResult Save(ToDoViewModel toDoViewModel)
         {
-            _toDoProvider.Add(toDoViewModel);
-            //return PartialView("Index", ToDoProvider.GetAll());
+            if (toDoViewModel.Id == 0)
+                _toDoProvider.Add(toDoViewModel);
+            else
+                _toDoProvider.Update(toDoViewModel);
             return RedirectToAction("ToDo");
         }
 
@@ -24,11 +27,16 @@ namespace ToDoApplication.Controllers
             return PartialView("Index", _toDoProvider.GetAll());
         }
 
-        public void Delete(ToDoViewModel toDoViewModel)
+        public ActionResult Delete(int id)
         {
-            _toDoProvider.Remove(toDoViewModel);
+            _toDoProvider.Remove(id);
 
-            RedirectToAction("List");
+            return RedirectToAction("ToDo", _toDoProvider.GetAll());
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return View("ToDo", _toDoProvider.Get(id));
         }
     }
 }

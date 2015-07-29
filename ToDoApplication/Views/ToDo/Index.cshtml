@@ -3,31 +3,44 @@
 
 <table class="table-bordered table table-responsive">
     <tr>
+        <th style="display: none">Id</th>
         <th>Title</th>
         <th>Description</th>
         <th>Email</th>
         <th>Priority</th>
         <th>Created On</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     @if (Model != null)
     {
         foreach (var item in Model)
          {
              <tr>
+                 <td style="display: none">
+                     @item.Id                     
+                 </td>                 
                  <td>
-                     @Html.DisplayFor(modelItem => item.Title)
+                     @Html.DisplayFor(modelItem => item.Title)                     
                  </td>
                  <td>
-                     @item.Description
+                     @Html.DisplayFor(modelItem => item.Description)                     
                  </td>
                  <td>
-                     @item.Email
+                     @Html.DisplayFor(modelItem => @item.Email)
                  </td>
                  <td>
-                     @item.Priority
+                     @Html.DisplayFor( modelItem => @item.Priority)
                  </td>
                  <td>
-                     @item.CreatedOn
+                     @Html.DisplayFor(modelItem => @item.CreatedOn)
+                 </td>
+                 <td>
+                     @Html.ActionLink("Edit", "Edit", new { id=item.Id }) 
+                     
+                 </td>
+                 <td>
+                     @Html.ActionLink("Delete", "Delete", new { id=item.Id })                      
                  </td>
              </tr>
          }
